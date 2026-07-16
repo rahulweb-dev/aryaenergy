@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Menu, X, ShieldCheck, Moon, Sun } from "lucide-react";
+import { Menu, X, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { brand } from "@/constants/site-content";
 
@@ -25,10 +24,6 @@ export function SiteNav() {
   const path = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
-
-  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -72,13 +67,6 @@ export function SiteNav() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {/* <button
-            aria-label="Toggle theme"
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            className="hidden h-9 w-9 place-items-center rounded-full border border-border hover:bg-accent md:grid"
-          >
-            {mounted && resolvedTheme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button> */}
           <Button asChild size="sm" className="hidden gradient-brand text-brand-foreground shadow-elevated hover:opacity-95 md:inline-flex">
             <Link href="/book">Book Test</Link>
           </Button>
