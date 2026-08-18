@@ -13,6 +13,9 @@ export const brand = {
   whatsapp: "+91 90000 12345",
   address: "Plot 14, Industrial Area Phase-II, New Delhi 110020",
   hours: "Mon–Sat · 8:00 AM – 8:00 PM",
+  logo: "/images/brand/logo.png",
+  logoWidth: 1672,
+  logoHeight: 941,
 };
 
 export const stats = [
@@ -72,12 +75,97 @@ export const testimonials = [
   { name: "Suresh Kumar",  role: "Taxi Operator",                quote: "I run 12 cars. ATS India saves me a full day each month vs. the old manual centres." },
 ];
 
-export const centers = [
-  { name: "ATS India — Delhi NCR",  address: "Plot 14, Industrial Area Phase-II, New Delhi 110020",   phone: "+91 11 4000 1200", hours: "Mon–Sat · 8AM–8PM" },
-  { name: "ATS India — Mumbai",     address: "MIDC Andheri East, Mumbai, Maharashtra 400093",         phone: "+91 22 4000 1200", hours: "Mon–Sat · 8AM–8PM" },
-  { name: "ATS India — Bengaluru",  address: "Peenya Industrial Estate, Bengaluru, Karnataka 560058", phone: "+91 80 4000 1200", hours: "Mon–Sat · 8AM–8PM" },
-  { name: "ATS India — Hyderabad",  address: "Balanagar Industrial Area, Hyderabad, Telangana 500037",phone: "+91 40 4000 1200", hours: "Mon–Sat · 8AM–8PM" },
+export type Center = {
+  slug: string;
+  name: string;
+  address: string;
+  photos: string[];
+};
+
+function centerPhotos(folder: string, count: number): string[] {
+  return Array.from({ length: count }, (_, i) => `/images/centers/${folder}/${i + 1}.jpeg`);
+}
+
+export const centers: Center[] = [
+  {
+    slug: "tardeo-mumbai",
+    name: "Tardeo (Mumbai)",
+    address: "Regional Transport Office, Mumbai (Central), Old Bodyguard Lane, Tulshiwadi, Tardeo, Mumbai – 400034",
+    photos: [],
+  },
+  {
+    slug: "taloja-panvel",
+    name: "Taloja (Panvel)",
+    address: "Survey No. 113/1, Mauje-Taloje Majkur, Tal. Panvel, Dist. Raigad – 410208",
+    photos: centerPhotos("taloja-panvel", 4),
+  },
+  {
+    slug: "nandiwali-kalyan",
+    name: "Nandiwali (Kalyan)",
+    address: "Opposite Nandivali Talav, Kalyan (E), Kandivali Gaon, Tal. Kalyan, Dist. Thane – 421306",
+    photos: [],
+  },
+  {
+    slug: "murphy-thane",
+    name: "Murphy (Thane)",
+    address: "Regional Transport Office, Thane, Eastern Expressway, Louis Wadi, Thane – 400601",
+    photos: centerPhotos("thane", 9),
+  },
+  {
+    slug: "moshi-pimpri-chinchwad",
+    name: "Moshi (Pimpri-Chinchwad)",
+    address: "Survey No. 539, Peth No. 13, Mauje-Chikhali, Tal. Haveli, Dist. Pune – 411062",
+    photos: centerPhotos("moshi", 9),
+  },
+  {
+    slug: "dive-ghat-pune",
+    name: "Dive Ghat (Pune)",
+    address: "Dive RTO Office, Beside Old Jejuri Road, A/P Dive, Tal. Purandar, Dist. Pune – 412301",
+    photos: centerPhotos("dive-ghat", 21),
+  },
+  {
+    slug: "kolhapur",
+    name: "Kolhapur",
+    address: "Survey No. 66, Near Bharti University, A/P Morewadi, Tal. Karvir, Dist. Kolhapur – 416013",
+    photos: [],
+  },
+  {
+    slug: "hingana-nagpur",
+    name: "Hingana (Nagpur)",
+    address: "ST Central Workshop Hingna, Hingna Road, Wadi, Tal. Hingna, Dist. Nagpur – 440028",
+    photos: [],
+  },
+  {
+    slug: "amravati",
+    name: "Amravati",
+    address: "Anjangaon-Bari Road, Opposite Ram-Mege College, Amravati Bypass Road, Badnera, Tal. & Dist. Amravati – 444701",
+    photos: centerPhotos("amravati", 8),
+  },
+  {
+    slug: "aurangabad",
+    name: "Aurangabad",
+    address: "Regional Transport Office, Aurangabad, Survey No. 24, Dhule–Solapur National Highway, Karodi, Aurangabad – 431136",
+    photos: [],
+  },
 ];
+
+export const registration = {
+  url: "https://parivahan.gov.in",
+  label: "Parivahan – Ministry of Road Transport & Highways",
+  desc: "Complete vehicle registration, renewals, transfers and other RTO applications directly on the Government of India's official Parivahan portal — the same system used by every RTO in this network.",
+};
+
+export const departmentContacts = {
+  hr: { title: "HR Department", email: "[Add HR department email]", phone: "[Add HR department phone number]" },
+  it: { title: "IT Support", email: "[Add IT support email]", phone: "[Add IT support phone number]" },
+};
+
+export const companyOverview =
+  "[Add company overview — 2–3 paragraphs on ATS India's history, the RTO centres it operates from, and its role in Maharashtra's vehicle fitness testing network.]";
+
+export const founders: { name: string; role: string; bio: string }[] = [];
+
+export const boardMembers: { name: string; role: string }[] = [];
 
 export const pricing = [
   { title: "Two Wheeler",       price: 500,  features: ["Full automated inspection", "Digital certificate", "VAHAN sync", "Under 10 minutes"] },
@@ -86,31 +174,8 @@ export const pricing = [
   { title: "Heavy Vehicle",     price: 2500, features: ["Axle-wise inspection", "Undercarriage AI scan", "Compliance report", "On-site coordinator"] },
 ];
 
-export const faqs = [
-  ["What is an Automated Testing Station (ATS)?", "An ATS is a MoRTH-approved facility that tests vehicle fitness using automated equipment with no manual intervention, ensuring transparent, tamper-proof results."],
-  ["Is a fitness certificate mandatory?", "Yes. All commercial vehicles and older private vehicles must obtain a fitness certificate under the Central Motor Vehicles Rules."],
-  ["How long does testing take?", "Most vehicles complete testing in 10–15 minutes from lane entry to certificate."],
-  ["Do I need an appointment?", "Walk-ins are accepted but booking online guarantees a slot and skips the queue."],
-  ["Which documents are required?", "RC, valid insurance, previous PUC, owner ID and (for commercial vehicles) permit and tax receipt."],
-  ["What happens if my vehicle fails?", "You get a detailed defect report free of cost and can re-test after repairs at 50% of the original fee within 15 days."],
-  ["Is the certificate linked to VAHAN?", "Yes. Results are pushed to the Government of India VAHAN portal in real time."],
-  ["How do I download my certificate?", "Use the Track Vehicle page or the WhatsApp bot with your vehicle number."],
-  ["Do you test EVs?", "Yes, dedicated EV lanes with high-voltage safety protocols are available at all centres."],
-  ["Can I book for a fleet?", "Yes, our fleet dashboard supports bulk bookings and consolidated invoicing."],
-  ["What payment methods are accepted?", "UPI, all major cards, net banking and corporate invoicing."],
-  ["Are prices fixed?", "Prices follow the state transport authority notified schedule and are displayed transparently."],
-  ["Can I reschedule my slot?", "Yes, up to 2 hours before the appointment via the booking link on your WhatsApp."],
-  ["Is testing available on Sundays?", "Select centres operate on Sundays. Check the Locations page."],
-  ["How is bias eliminated?", "All measurements are captured by calibrated sensors and streamed to a central server without operator input."],
-  ["Are the sensors calibrated?", "Yes, calibrated every 6 months by NABL-accredited agencies. Reports are available on request."],
-  ["Do you provide roadside assistance?", "A complimentary RSA voucher is bundled with car and above categories."],
-  ["What is the validity of the certificate?", "1 year for transport vehicles under 8 years, 6 months thereafter, subject to CMVR."],
-  ["Can I get an English + Hindi certificate?", "Certificates are bilingual by default."],
-  ["Who do I contact for support?", "Call 1800 200 1200 or WhatsApp us at +91 90000 12345, 24×7."],
-] as [string, string][];
-
 export const images = {
-  hero: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1400&q=80",
+  hero: "/images/centers/csn-unassigned/1.jpeg",
   lane: "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1400&q=80",
   brake: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80",
   suspension: "https://images.unsplash.com/photo-1493238792000-8113da705763?w=1200&q=80",
@@ -118,7 +183,7 @@ export const images = {
   headlight: "https://images.unsplash.com/photo-1518987048-93e29699e79a?w=1200&q=80",
   noise: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&q=80",
   inspection: "https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?w=1200&q=80",
-  facility: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=1400&q=80",
+  facility: "/images/centers/csn-unassigned/1.jpeg",
   control: "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=1200&q=80",
   certificate: "https://images.unsplash.com/photo-1584931423298-c576fda54bd2?w=1200&q=80",
 };

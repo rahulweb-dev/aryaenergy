@@ -1,22 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, ShieldCheck } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { brand } from "@/constants/site-content";
 
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/services", label: "Services" },
   { to: "/process", label: "Process" },
-  { to: "/pricing", label: "Pricing" },
+  // { to: "/pricing", label: "Pricing" },
   { to: "/locations", label: "Locations" },
   // { to: "/track", label: "Track" },
   // { to: "/my-bookings", label: "My Bookings" },
-  { to: "/faq", label: "FAQ" },
+  // { to: "/register", label: "Register" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -40,14 +40,15 @@ export function SiteNav() {
         }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2 font-display">
-          <span className="grid h-9 w-9 place-items-center rounded-xl gradient-brand text-brand-foreground shadow-elevated">
-            <ShieldCheck className="h-5 w-5" />
-          </span>
-          <div className="leading-tight">
-            <div className="text-sm font-semibold tracking-tight">{brand.short}</div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Testing Services</div>
-          </div>
+        <Link href="/" className="flex items-center font-display">
+          <Image
+            src={brand.logo}
+            alt={brand.name}
+            width={brand.logoWidth}
+            height={brand.logoHeight}
+            priority
+            className="h-22 w-auto object-contain"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">

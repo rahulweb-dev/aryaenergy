@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ShieldCheck, Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { brand } from "@/constants/site-content";
 import { Glossed } from "@/components/shared/Glossary";
 
@@ -8,11 +9,14 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-border bg-secondary text-secondary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4 md:px-6">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl gradient-brand">
-              <ShieldCheck className="h-5 w-5 text-white" />
-            </span>
-            <div className="font-display text-base font-semibold">{brand.short}</div>
+          <div className="inline-block rounded-xl bg-white p-2">
+            <Image
+              src={brand.logo}
+              alt={brand.name}
+              width={brand.logoWidth}
+              height={brand.logoHeight}
+              className="h-12 w-auto object-contain"
+            />
           </div>
           <p className="mt-4 max-w-xs text-sm text-white/70">{brand.tagline}</p>
         </div>
@@ -20,9 +24,9 @@ export function SiteFooter() {
           <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-white/50">Company</div>
           <ul className="space-y-2 text-sm text-white/80">
             <li><Link href="/about" className="hover:text-white">About</Link></li>
-            <li><Link href="/services" className="hover:text-white">Services</Link></li>
             <li><Link href="/process" className="hover:text-white">Testing Process</Link></li>
             <li><Link href="/pricing" className="hover:text-white">Pricing</Link></li>
+            <li><Link href="/register" className="hover:text-white">Register Online</Link></li>
           </ul>
         </div>
         <div>

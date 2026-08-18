@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { SiteLayout, PageHeader } from "@/components/shared/layout";
 import { FadeIn } from "@/components/shared/motion";
-import { images } from "@/constants/site-content";
-import { ShieldCheck, Target, Eye, Cog, type LucideIcon } from "lucide-react";
+import { images, companyOverview, founders, boardMembers, centers } from "@/constants/site-content";
+import { ShieldCheck, Target, Eye, Cog, Users, type LucideIcon } from "lucide-react";
 import { Glossed } from "@/components/shared/Glossary";
 
 export const metadata: Metadata = {
@@ -51,6 +51,52 @@ export default function About() {
         </FadeIn>
       </section>
 
+      <section className="mx-auto max-w-4xl px-4 pb-20 md:px-6">
+        <FadeIn>
+          <h2 className="mb-4 text-3xl font-semibold md:text-4xl">Company overview</h2>
+          <p className="text-muted-foreground">{companyOverview}</p>
+        </FadeIn>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-20 md:px-6">
+        <FadeIn>
+          <h2 className="mb-8 text-3xl font-semibold md:text-4xl">Leadership</h2>
+        </FadeIn>
+        <div className="grid gap-8 md:grid-cols-2">
+          <FadeIn>
+            <div className="mb-4 text-xs font-semibold uppercase tracking-widest text-primary">Owners / Founders</div>
+            {founders.length > 0 ? (
+              <div className="grid gap-4">
+                {founders.map((f) => (
+                  <div key={f.name} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+                    <div className="font-semibold">{f.name}</div>
+                    <div className="text-sm text-primary">{f.role}</div>
+                    <p className="mt-2 text-sm text-muted-foreground">{f.bio}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <PlaceholderCard text="Founder / owner name, title and a short bio will appear here." />
+            )}
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <div className="mb-4 text-xs font-semibold uppercase tracking-widest text-primary">Board of Directors</div>
+            {boardMembers.length > 0 ? (
+              <div className="grid gap-4">
+                {boardMembers.map((b) => (
+                  <div key={b.name} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+                    <div className="font-semibold">{b.name}</div>
+                    <div className="text-sm text-primary">{b.role}</div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <PlaceholderCard text="Board of Directors / Board Members will be listed here." />
+            )}
+          </FadeIn>
+        </div>
+      </section>
+
       <section className="bg-secondary py-20 text-secondary-foreground">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
           <FadeIn>
@@ -75,7 +121,7 @@ export default function About() {
           <h2 className="mb-8 text-3xl font-semibold md:text-4xl">Gallery</h2>
         </FadeIn>
         <div className="grid gap-4 md:grid-cols-3">
-          {[images.lane, images.control, images.inspection, images.brake, images.emission, images.certificate].map((src) => (
+          {centers.flatMap((c) => c.photos.slice(0, 1)).slice(0, 6).map((src) => (
             <FadeIn key={src}>
               <div className="relative h-64 w-full overflow-hidden rounded-2xl shadow-soft">
                 <Image
@@ -91,6 +137,15 @@ export default function About() {
         </div>
       </section>
     </SiteLayout>
+  );
+}
+
+function PlaceholderCard({ text }: { text: string }) {
+  return (
+    <div className="flex items-center gap-3 rounded-2xl border border-dashed border-border bg-muted/40 p-6 text-sm text-muted-foreground">
+      <Users className="h-5 w-5 shrink-0 text-muted-foreground/70" />
+      {text}
+    </div>
   );
 }
 

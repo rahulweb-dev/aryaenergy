@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { SiteLayout, PageHeader } from "@/components/shared/layout";
 import { FadeIn } from "@/components/shared/motion";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { MapPin, Mail, Phone, Clock, MessageCircle, type LucideIcon } from "lucide-react";
-import { brand } from "@/constants/site-content";
+import { MapPin, Mail, Phone, Clock, MessageCircle, Users, Wrench, type LucideIcon } from "lucide-react";
+import { brand, departmentContacts } from "@/constants/site-content";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -49,7 +49,34 @@ export default function Contact() {
           </div>
         </FadeIn>
       </div>
+
+      <div className="mx-auto max-w-6xl px-4 pb-20 md:px-6">
+        <FadeIn>
+          <h2 className="mb-6 text-2xl font-semibold md:text-3xl">Department contacts</h2>
+        </FadeIn>
+        <div className="grid gap-4 md:grid-cols-2">
+          <FadeIn>
+            <DeptContact icon={Users} {...departmentContacts.hr} />
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <DeptContact icon={Wrench} {...departmentContacts.it} />
+          </FadeIn>
+        </div>
+      </div>
     </SiteLayout>
+  );
+}
+
+function DeptContact({ icon: Icon, title, email, phone }: { icon: LucideIcon; title: string; email: string; phone: string }) {
+  return (
+    <div className="glass shadow-soft flex items-start gap-3 rounded-2xl p-5">
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary"><Icon className="h-5 w-5" /></span>
+      <div>
+        <div className="font-semibold">{title}</div>
+        <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground"><Mail className="h-3.5 w-3.5" /> {email}</div>
+        <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground"><Phone className="h-3.5 w-3.5" /> {phone}</div>
+      </div>
+    </div>
   );
 }
 

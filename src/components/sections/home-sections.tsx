@@ -131,20 +131,14 @@ export function Services() {
       <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {services.slice(0, 6).map((s) => (
           <StaggerItem key={s.slug} variants={staggerItemVariants}>
-            <Link
-              href="/services"
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-elevated"
-            >
+            <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-elevated">
               <div className="mb-5 grid h-12 w-12 place-items-center rounded-xl gradient-brand text-brand-foreground shadow-elevated">
                 <s.icon className="h-5 w-5" />
               </div>
               <div className="text-lg font-semibold">{s.title}</div>
               <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-              <div className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                Learn more <ChevronRight className="h-4 w-4" />
-              </div>
               <div className="pointer-events-none absolute -bottom-16 -right-16 h-40 w-40 rounded-full bg-primary/5 blur-2xl" />
-            </Link>
+            </div>
           </StaggerItem>
         ))}
       </Stagger>

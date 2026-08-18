@@ -45,7 +45,7 @@ export function LoginForm() {
   return (
     <div className="relative">
       <BusyOverlay active={busy} />
-      <form onSubmit={handleSubmit(onSubmit)} className="glass shadow-soft rounded-3xl p-6 md:p-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="rounded-3xl border border-border bg-card p-6 shadow-soft md:p-8">
         <fieldset disabled={busy} className="grid gap-5">
           <div>
             <Label htmlFor="email">Email</Label>
