@@ -156,8 +156,8 @@ export const registration = {
 };
 
 export const departmentContacts = {
-  hr: { title: "HR Department", email: "[Add HR department email]", phone: "[Add HR department phone number]" },
-  it: { title: "IT Support", email: "[Add IT support email]", phone: "[Add IT support phone number]" },
+  hr: { title: "HR Department", email: "hr@aryaenergy.in", phone: "+91 86556 35534" },
+  it: { title: "IT Support", email: "itsupport@aryaenergy.in", phone: "+91 86555 08929" },
 };
 
 export const companyOverview =
